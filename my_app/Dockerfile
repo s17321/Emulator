@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Skopiuj pliki do kontenera
 COPY requirements.txt /app/
-COPY . /app/
+COPY ./my_app /app
 
 # Zainstaluj zależności
 RUN pip install -r requirements.txt
