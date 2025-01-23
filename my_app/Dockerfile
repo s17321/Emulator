@@ -5,10 +5,10 @@ FROM python:3.11
 WORKDIR /app
 
 # Skopiuj plik requirements.txt do kontenera
-COPY my_app/requirements.txt /app/
+COPY requirements.txt /app/
 
-# Skopiuj cały folder my_app do kontenera
-COPY my_app /app
+# Skopiuj cały katalog my_app do kontenera
+COPY my_app /app/my_app
 
 # Zainstaluj zależności
 RUN pip install --no-cache-dir -r requirements.txt
