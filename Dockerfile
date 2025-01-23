@@ -13,5 +13,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Kopiowanie całej aplikacji
 COPY my_app/ /my_app/
 
-# Polecenie uruchamiające oba procesy
-CMD ["sh", "-c", "python emulator/emulator.py --all & uvicorn app.main:app --host 0.0.0.0 --port 8000"]
+# Zainstaluj supervisord
+RUN apt-get update && apt-get install -y supervisor && apt-get clean
+
+# Skopiuj konfigurację supervisor
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Komenda startowa
+CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
